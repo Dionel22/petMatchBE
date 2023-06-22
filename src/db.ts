@@ -1,12 +1,17 @@
 require("dotenv").config();
 import { Sequelize, Model } from "sequelize";
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =
+  process.env;
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DATABASE}`,
   {
-    logging: false,
-    native: false,
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        mode: "require",
+      },
+    },
   }
 );
 
