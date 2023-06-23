@@ -3,7 +3,6 @@ import {
   InferAttributes,
   InferCreationAttributes,
   DataTypes,
-  ForeignKey,
 } from "sequelize";
 
 export class Pet extends Model<
