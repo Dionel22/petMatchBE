@@ -6,7 +6,6 @@ interface ProductAttributes {
     imagen: string;
     price: number;
     available: number;
-    type: string;
 }
 
 class Product extends Model<ProductAttributes> {
@@ -15,7 +14,6 @@ class Product extends Model<ProductAttributes> {
   declare imagen: string;
   declare price: number;
   declare available: number;
-  declare type: string;
   }
 
 export default function productModel (sequelize: Sequelize) {
@@ -44,10 +42,6 @@ export default function productModel (sequelize: Sequelize) {
       },
       available: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      type: {
-        type: DataTypes.STRING,
         allowNull: false,
       }
     },{
