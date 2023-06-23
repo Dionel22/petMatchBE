@@ -1,5 +1,5 @@
 require("dotenv").config();
-import { Sequelize, Model } from "sequelize";
+import { Sequelize } from "sequelize";
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =
   process.env;
 
