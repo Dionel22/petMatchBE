@@ -1,26 +1,26 @@
-import { Model, Optional } from 'sequelize'  
-const { Sequelize, DataTypes } = require("sequelize");  
-const sequelize = new Sequelize("sqlite::memory:")   
+import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes } from 'sequelize';
+class Reviews extends Model<InferAttributes<Reviews>, InferCreationAttributes<Reviews>> {
+    declare id: string;
+    declare totalScore: number;
+  
+  }
 
-interface ReviewsAttributes{
-    id: string;
-    totalScore: number
-} 
-type ReviewsCreationAttributes = Optional<ReviewsAttributes,'id'>; 
-
-const Reviews: Model<  
-   ReviewsAttributes,
-   ReviewsCreationAttributes    
-> = sequelize.define(
-    'Reviews',{
-        id: {
-            type: DataTypes.UUID, 
-            defaultValue: DataTypes.UUIDV4, 
-            primaryKey: true, 
-        },  
-        totalScore: {
-            type: DataTypes.INTEGER
-        }
-    }
-) 
-export default Reviews
+export default function reviewsModel (sequelize: Sequelize) {
+    Reviews.init(
+    {
+     id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
+      totalScore: {
+        type:  DataTypes.DOUBLE,
+        allowNull: false,
+      },
+    },{
+    sequelize,
+    paranoid: true,
+    timestamps: false
+  })
+  return Reviews
+}
