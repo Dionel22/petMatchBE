@@ -3,6 +3,7 @@ import {
   InferAttributes,
   InferCreationAttributes,
   DataTypes,
+  Sequelize,
 } from "sequelize";
 
 export class Pet extends Model<
@@ -17,40 +18,49 @@ export class Pet extends Model<
   declare image: string;
 }
 
-export const PetInit = {
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  age: {
-    type: DataTypes.DOUBLE,
-    validate: {
-      min: 0.0,
-      max: 20.0,
+export default function petInit(sequelize: Sequelize) {
+  Pet.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      age: {
+        type: DataTypes.DOUBLE,
+        validate: {
+          min: 0.0,
+          max: 20.0,
+        },
+        allowNull: false,
+      },
+      breed: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        },
+        allowNull: false,
+      },
+      sterilization: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
+        validate: {
+          isUrl: true,
+        },
+        allowNull: false,
+      },
     },
-    allowNull: false,
-  },
-  breed: {
-    type: DataTypes.STRING,
-    validate: {
-      notEmpty: true,
-    },
-    allowNull: false,
-  },
-  sterilization: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-  },
-  image: {
-    type: DataTypes.STRING,
-    validate: {
-      isUrl: true,
-    },
-    allowNull: false,
-  },
-};
+    {
+      sequelize,
+      paranoid: true,
+      updatedAt: false,
+    }
+  );
+}

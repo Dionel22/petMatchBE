@@ -1,8 +1,8 @@
 require("dotenv").config();
 import { Sequelize } from "sequelize";
-import { Pet, PetInit } from "./models/Pets";
-import { Vaccine, VaccineInit } from "./models/Vaccine";
-import { PetType, PetTypeInit } from "./models/PetType";
+import petInit, { Pet } from "./models/Pets";
+import { Vaccine, vaccineInit } from "./models/Vaccine";
+import petTypeInit, { PetType } from "./models/PetType";
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =
   process.env;
 
@@ -20,23 +20,9 @@ const sequelize = new Sequelize(
 
 // -------- Init of Tables -----------
 
-PetType.init(PetTypeInit, {
-  sequelize,
-  paranoid: true,
-  updatedAt: false,
-});
-
-Pet.init(PetInit, {
-  sequelize,
-  paranoid: true,
-  updatedAt: false,
-});
-
-Vaccine.init(VaccineInit, {
-  sequelize,
-  paranoid: true,
-  updatedAt: false,
-});
+petTypeInit(sequelize);
+petInit(sequelize);
+vaccineInit(sequelize);
 
 // -------- Relationships ----------
 

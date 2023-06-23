@@ -3,6 +3,7 @@ import {
   InferAttributes,
   InferCreationAttributes,
   DataTypes,
+  Sequelize,
 } from "sequelize";
 
 export class Vaccine extends Model<
@@ -13,17 +14,26 @@ export class Vaccine extends Model<
   declare name: string;
 }
 
-export const VaccineInit = {
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
+export const vaccineInit = (sequelize: Sequelize) => {
+  Vaccine.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
-  },
+    {
+      sequelize,
+      paranoid: true,
+      updatedAt: false,
+    }
+  );
 };

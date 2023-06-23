@@ -3,6 +3,7 @@ import {
   InferAttributes,
   InferCreationAttributes,
   DataTypes,
+  Sequelize,
 } from "sequelize";
 
 export class PetType extends Model<
@@ -13,17 +14,26 @@ export class PetType extends Model<
   declare type: string;
 }
 
-export const PetTypeInit = {
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
-  },
-  type: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
+export default function petTypeInit(sequelize: Sequelize) {
+  PetType.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
-  },
-};
+    {
+      sequelize,
+      paranoid: true,
+      updatedAt: false,
+    }
+  );
+}
