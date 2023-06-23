@@ -23,6 +23,7 @@ export default function typeProductModel (sequelize: Sequelize) {
         },
     },{
     sequelize,
+    paranoid: true,
     timestamps: false
   })
   return TypeProduct

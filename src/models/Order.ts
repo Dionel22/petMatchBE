@@ -32,9 +32,13 @@ export default function  orderModel (sequelize: Sequelize) {
         buyDate: {
             type: DataTypes.DATE,
             allowNull: false,
+            validate: {
+                isDate: true,
+            }
         },
     },{
     sequelize,
+    paranoid: true,
     timestamps: false
   })
   return Order

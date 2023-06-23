@@ -14,7 +14,7 @@ class Product extends Model<ProductAttributes> {
   declare imagen: string;
   declare price: number;
   declare available: number;
-  }
+}
 
 export default function productModel (sequelize: Sequelize) {
     Product.init(
@@ -39,13 +39,22 @@ export default function productModel (sequelize: Sequelize) {
       price: {
         type:  DataTypes.DOUBLE,
         allowNull: false,
+         validate: {
+          min: 0,
+          msg: "the minimum price is greater equal to 0"
+        }
       },
       available: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          min: 0,
+          msg: "the minimum available is greater equal to 0"
+        }
       }
     },{
     sequelize,
+    paranoid: true,
     timestamps: false
   })
   return Product
