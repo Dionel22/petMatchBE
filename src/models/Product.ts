@@ -1,14 +1,6 @@
-import { DataTypes, Model, Sequelize } from 'sequelize';
+import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes, } from 'sequelize';
 
-interface ProductAttributes {
-    id: string;
-    name: string;
-    imagen: string;
-    price: number;
-    available: number;
-}
-
-class Product extends Model<ProductAttributes> {
+class Product extends Model<InferAttributes<Product>, InferCreationAttributes<Product>> {
   declare id: string;
   declare name: string;
   declare imagen: string;

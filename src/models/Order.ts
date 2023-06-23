@@ -1,13 +1,6 @@
-import { DataTypes, Model, Sequelize } from 'sequelize';
+import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes } from 'sequelize';
 
-interface OrderProductAttributes {
-    id: string;
-    taxes: number;
-    totalPrice: number;
-    buyDate: Date;
-}
-
-class Order extends Model<OrderProductAttributes> {
+class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>> {
     declare  id: string;
     declare  taxes: number;
     declare  totalPrice: number;

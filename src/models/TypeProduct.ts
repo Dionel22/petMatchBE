@@ -1,11 +1,6 @@
-import { DataTypes, Model, Sequelize } from 'sequelize';
+import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes } from 'sequelize';
 
-interface TypeProductAttributes {
-    id: string;
-    name: string;
-}
-
-class TypeProduct extends Model<TypeProductAttributes> {
+class TypeProduct extends Model<InferAttributes<TypeProduct>, InferCreationAttributes<TypeProduct>> {
     declare  id: string;
     declare  name: string;
   }
