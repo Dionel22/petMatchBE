@@ -1,9 +1,10 @@
 require("dotenv").config();
 import { Sequelize } from "sequelize";
+import { Pet, PetInit } from "./models/Pets";
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =
   process.env;
 
-export const sequelize = new Sequelize(
+const sequelize = new Sequelize(
   `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DATABASE}`,
   {
     dialect: "postgres",
@@ -15,7 +16,10 @@ export const sequelize = new Sequelize(
   }
 );
 
-module.exports = {
-  ...sequelize.models,
-  conn: sequelize,
-};
+Pet.init(PetInit, {
+  sequelize,
+  paranoid: true,
+  updatedAt: false,
+});
+
+export default sequelize;
