@@ -14,7 +14,7 @@ class Order extends Model<OrderProductAttributes> {
     buyDate!: Date;
   }
 
-export default function (sequelize: Sequelize) {
+export default function  orderModel (sequelize: any) {
     Order.init({
         id: {
             type: DataTypes.UUID,
@@ -23,16 +23,20 @@ export default function (sequelize: Sequelize) {
         },
         taxes: {
             type: DataTypes.FLOAT,
+            allowNull: false,
         },
         totalPrice: {
             type: DataTypes.FLOAT,
+            allowNull: false,
         },
         buyDate: {
             type: DataTypes.DATE,
+            allowNull: false,
         },
     },{
     sequelize,
-    modelName: 'Order'
+    modelName: 'Order',
+    timestamps: false
   })
   return Order
 }
