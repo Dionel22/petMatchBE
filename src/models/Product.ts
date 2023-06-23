@@ -1,4 +1,4 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes, Model, Sequelize } from 'sequelize';
 
 interface ProductAttributes {
     id: string;
@@ -6,17 +6,19 @@ interface ProductAttributes {
     imagen: string;
     price: number;
     available: number;
+    type: string;
 }
 
 class Product extends Model<ProductAttributes> {
-    id!: string;
-    name!: string;
-    imagen!: string;
-    price!: number;
-    available!: number;
+  declare id: string;
+  declare name: string;
+  declare imagen: string;
+  declare price: number;
+  declare available: number;
+  declare type: string;
   }
 
-export default function productModel (sequelize: any) {
+export default function productModel (sequelize: Sequelize) {
     Product.init(
     {
      id: {
@@ -31,18 +33,25 @@ export default function productModel (sequelize: any) {
       imagen: {
         type:  DataTypes.STRING,
         allowNull: false,
+        validate: {
+          isUrl: true,
+          msg: "It has to be a valid URL."
+        }
       },
       price: {
-        type:  DataTypes.INTEGER,
+        type:  DataTypes.DOUBLE,
         allowNull: false,
       },
       available: {
         type: DataTypes.INTEGER,
         allowNull: false,
+      },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
       }
     },{
     sequelize,
-    modelName: 'Product',
     timestamps: false
   })
   return Product

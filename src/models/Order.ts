@@ -8,13 +8,13 @@ interface OrderProductAttributes {
 }
 
 class Order extends Model<OrderProductAttributes> {
-    id!: string;
-    taxes!: number;
-    totalPrice!: number;
-    buyDate!: Date;
+    declare  id: string;
+    declare  taxes: number;
+    declare  totalPrice: number;
+    declare  buyDate: Date;
   }
 
-export default function  orderModel (sequelize: any) {
+export default function  orderModel (sequelize: Sequelize) {
     Order.init({
         id: {
             type: DataTypes.UUID,
@@ -22,11 +22,11 @@ export default function  orderModel (sequelize: any) {
             primaryKey: true
         },
         taxes: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DOUBLE,
             allowNull: false,
         },
         totalPrice: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DOUBLE,
             allowNull: false,
         },
         buyDate: {
@@ -35,7 +35,6 @@ export default function  orderModel (sequelize: any) {
         },
     },{
     sequelize,
-    modelName: 'Order',
     timestamps: false
   })
   return Order
