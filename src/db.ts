@@ -3,6 +3,9 @@ import { Sequelize, Model } from "sequelize";
 import productModel from "./models/Product";
 import orderModel from "./models/Order";
 import typeProductModel from "./models/TypeProduct";
+import userSellsProductModel from "./models/UserSellsProduct";
+import productReviewsModel from "./models/ProductReviews";
+import orderProductModel from "./models/OrderProducts";
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } = process.env;
 
 const sequelize = new Sequelize(
@@ -22,18 +25,31 @@ const sequelize = new Sequelize(
 //son funcion que pasa la instancia de sequelize
 productModel(sequelize);
 orderModel(sequelize);
+orderProductModel(sequelize);
 typeProductModel(sequelize);
+userSellsProductModel(sequelize);
+productReviewsModel(sequelize);
+
 
 //saco los modelos de sequelize
-const { Product, Order, TypeProduct } = sequelize.models
+const { Product, Order, TypeProduct, UserSellsProduct, ProductReviews, OrderProduct } = sequelize.models
 
 //hago la relacion de  mucho a uno 
 TypeProduct.hasMany(Product);
 Product.belongsTo(TypeProduct);
 
-//hago la relacion de mucho a mucho
-Product.belongsToMany(Order, {through: "Product_Order", timestamps: false});
-Order.belongsToMany(Product, {through: "Product_Order", timestamps: false});
+Product.hasMany(ProductReviews);
+ProductReviews.belongsTo(Product);
+
+Product.hasMany(UserSellsProduct);
+UserSellsProduct.belongsTo(Product);
+
+Product.hasMany(OrderProduct);
+OrderProduct.belongsTo(Product);
+
+Order.hasMany(OrderProduct);
+OrderProduct.belongsTo(Order);
+
 
 module.exports = {
   ...sequelize.models,

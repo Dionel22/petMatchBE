@@ -6,6 +6,7 @@ class Product extends Model<InferAttributes<Product>, InferCreationAttributes<Pr
   declare imagen: string;
   declare price: number;
   declare available: number;
+  declare averageRating: number;
 }
 
 export default function productModel (sequelize: Sequelize) {
@@ -43,6 +44,10 @@ export default function productModel (sequelize: Sequelize) {
           min: 0,
           msg: "the minimum available is greater equal to 0"
         }
+      },
+      averageRating: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
       }
     },{
     sequelize,

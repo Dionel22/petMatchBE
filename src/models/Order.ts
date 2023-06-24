@@ -3,8 +3,9 @@ import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes }
 class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>> {
     declare  id: string;
     declare  taxes: number;
+    declare  price: number;
     declare  totalPrice: number;
-    declare  buyDate: Date;
+    declare  purchaseDate: Date;
   }
 
 export default function  orderModel (sequelize: Sequelize) {
@@ -18,11 +19,15 @@ export default function  orderModel (sequelize: Sequelize) {
             type: DataTypes.DOUBLE,
             allowNull: false,
         },
+        price: {
+            type: DataTypes.DOUBLE,
+            allowNull: false,
+        },
         totalPrice: {
             type: DataTypes.DOUBLE,
             allowNull: false,
         },
-        buyDate: {
+        purchaseDate: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
