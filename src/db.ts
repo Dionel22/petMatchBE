@@ -6,7 +6,12 @@ import typeProductModel from "./models/TypeProduct";
 import userSellsProductModel from "./models/UserSellsProduct";
 import productReviewsModel from "./models/ProductReviews";
 import orderProductModel from "./models/OrderProducts";
+import users from "./models/users";
+import usersType from "./models/usersType";
+import reviews from "./models/reviews";
+
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } = process.env;
+
 
 const sequelize = new Sequelize(
   `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DATABASE}`,
@@ -29,10 +34,13 @@ orderProductModel(sequelize);
 typeProductModel(sequelize);
 userSellsProductModel(sequelize);
 productReviewsModel(sequelize);
+users(sequelize)
+usersType(sequelize)
+reviews(sequelize)
 
 
 //saco los modelos de sequelize
-const { Product, Order, TypeProduct, UserSellsProduct, ProductReviews, OrderProduct } = sequelize.models
+const { Product, Order, TypeProduct, UserSellsProduct, ProductReviews, OrderProduct,  Users, UsersType, Reviews } = sequelize.models
 
 //hago la relacion de  mucho a uno 
 TypeProduct.hasMany(Product);
@@ -49,6 +57,16 @@ OrderProduct.belongsTo(Product);
 
 Order.hasMany(OrderProduct);
 OrderProduct.belongsTo(Order);
+
+UsersType.hasMany(Users);
+Users.belongsTo(UsersType);
+
+Reviews.hasMany(ProductReviews);
+ProductReviews.belongsTo(Reviews);
+
+//hago la relacion de  mucho a mucho 
+Users.belongsToMany(Reviews, { through: 'UserReviews'});
+Reviews.belongsToMany(Users, { through: 'UserReviews'});
 
 
 module.exports = {
