@@ -52,17 +52,26 @@ ProductReviews.belongsTo(Product);
 Product.hasMany(UserSellsProduct);
 UserSellsProduct.belongsTo(Product);
 
+Users.hasMany(UserSellsProduct);
+UserSellsProduct.belongsTo(Users);
+
 Product.hasMany(OrderProduct);
 OrderProduct.belongsTo(Product);
 
 Order.hasMany(OrderProduct);
 OrderProduct.belongsTo(Order);
 
+Users.hasMany(Order);
+Order.belongsTo(Users);
+
 UsersType.hasMany(Users);
 Users.belongsTo(UsersType);
 
 Reviews.hasMany(ProductReviews);
 ProductReviews.belongsTo(Reviews);
+
+Users.hasMany(ProductReviews);
+ProductReviews.belongsTo(Users);
 
 //hago la relacion de  mucho a mucho 
 Users.belongsToMany(Reviews, { through: 'UserReviews'});
