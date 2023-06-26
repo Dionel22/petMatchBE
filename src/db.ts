@@ -3,6 +3,7 @@ import { Sequelize } from "sequelize";
 import petInit, { Pet } from "./models/Pets";
 import { Vaccine, vaccineInit } from "./models/Vaccine";
 import petTypeInit, { PetType } from "./models/PetType";
+import { Post, postInit } from "./models/Post";
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =
   process.env;
 
@@ -23,6 +24,7 @@ const sequelize = new Sequelize(
 petTypeInit(sequelize);
 petInit(sequelize);
 vaccineInit(sequelize);
+postInit(sequelize);
 
 // -------- Relationships ----------
 
