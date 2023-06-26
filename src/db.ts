@@ -10,7 +10,6 @@ import petInit, { Pet } from "./models/Pets";
 import { Vaccine, vaccineInit } from "./models/Vaccine";
 import petTypeInit, { PetType } from "./models/PetType";
 import { Post, postInit } from "./models/Post";
-
 import users from "./models/users";
 import usersType from "./models/usersType";
 import reviewsModel from "./models/Reviews";
