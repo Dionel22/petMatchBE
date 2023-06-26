@@ -2,15 +2,15 @@ require("dotenv").config();
 import { Sequelize } from "sequelize";
 import productModel, { Product } from "./models/Product";
 import orderModel, { Order } from "./models/Order";
-import typeProductModel, { TypeProduct } from "./models/TypeProduct";
+import typeProductModel, { TypeProduct } from "./models/ProductType";
 import productReviewsModel, { ProductReviews } from "./models/ProductReviews";
 import petInit, { Pet } from "./models/Pets";
 import { Vaccine, vaccineInit } from "./models/Vaccine";
 import petTypeInit, { PetType } from "./models/PetType";
 import { Post, postInit } from "./models/Post";
-import users, { Users } from "./models/users";
-import usersType, { UsersType } from "./models/usersType";
-import reviewsModel, { Reviews } from "./models/Reviews";
+import users, { Users } from "./models/User";
+import usersType, { UsersType } from "./models/UserType";
+import reviewsModel, { Reviews } from "./models/Review";
 import userReviewModel, { UserReview } from "./models/UserReview";
 
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =

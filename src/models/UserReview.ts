@@ -5,8 +5,8 @@ import {
   InferAttributes,
   InferCreationAttributes,
 } from "sequelize";
-import { Users } from "./users";
-import { Reviews } from "./Reviews";
+import { Users } from "./User";
+import { Reviews } from "./Review";
 
 export class UserReview extends Model<
   InferAttributes<UserReview>,
