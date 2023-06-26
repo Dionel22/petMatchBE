@@ -13,17 +13,15 @@ import { Post, postInit } from "./models/Post";
 
 import users from "./models/users";
 import usersType from "./models/usersType";
-import reviews from "./models/reviews";
+import reviewsModel from "./models/Reviews";
 
-const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } = process.env;
-
+const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =
+  process.env;
 
 const sequelize = new Sequelize(
   `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DATABASE}`,
   {
     dialect: "postgres",
-    logging: false,
-    native: false,
     dialectOptions: {
       ssl: {
         mode: "require",
@@ -39,15 +37,24 @@ orderProductModel(sequelize);
 typeProductModel(sequelize);
 userSellsProductModel(sequelize);
 productReviewsModel(sequelize);
-users(sequelize)
-usersType(sequelize)
-reviews(sequelize)
-
+users(sequelize);
+usersType(sequelize);
+reviewsModel(sequelize);
 
 //saco los modelos de sequelize
-const { Product, Order, TypeProduct, UserSellsProduct, ProductReviews, OrderProduct,  Users, UsersType, Reviews } = sequelize.models
+const {
+  Product,
+  Order,
+  TypeProduct,
+  UserSellsProduct,
+  ProductReviews,
+  OrderProduct,
+  Users,
+  UsersType,
+  Reviews,
+} = sequelize.models;
 
-//hago la relacion de  mucho a uno 
+//hago la relacion de  mucho a uno
 TypeProduct.hasMany(Product);
 Product.belongsTo(TypeProduct);
 
@@ -78,10 +85,9 @@ ProductReviews.belongsTo(Reviews);
 Users.hasMany(ProductReviews);
 ProductReviews.belongsTo(Users);
 
-//hago la relacion de  mucho a mucho 
-Users.belongsToMany(Reviews, { through: 'UserReviews'});
-Reviews.belongsToMany(Users, { through: 'UserReviews'});
-
+//hago la relacion de  mucho a mucho
+Users.belongsToMany(Reviews, { through: "UserReviews" });
+Reviews.belongsToMany(Users, { through: "UserReviews" });
 
 // -------- Init of Tables -----------
 
