@@ -3,11 +3,7 @@ import { Sequelize } from "sequelize";
 import productModel, { Product } from "./models/Product";
 import orderModel, { Order } from "./models/Order";
 import typeProductModel, { TypeProduct } from "./models/TypeProduct";
-import userSellsProductModel, {
-  UserSellsProduct,
-} from "./models/UserSellsProduct";
 import productReviewsModel, { ProductReviews } from "./models/ProductReviews";
-import orderProductModel, { OrderProduct } from "./models/OrderProducts";
 import petInit, { Pet } from "./models/Pets";
 import { Vaccine, vaccineInit } from "./models/Vaccine";
 import petTypeInit, { PetType } from "./models/PetType";
@@ -15,6 +11,7 @@ import { Post, postInit } from "./models/Post";
 import users, { Users } from "./models/users";
 import usersType, { UsersType } from "./models/usersType";
 import reviewsModel, { Reviews } from "./models/Reviews";
+import userReviewModel, { UserReview } from "./models/UserReview";
 
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =
   process.env;
@@ -31,12 +28,11 @@ const sequelize = new Sequelize(
   }
 );
 
-//son funcion que pasa la instancia de sequelize
+// ----------------- Definición de los modelos -----------------
+
 productModel(sequelize);
 orderModel(sequelize);
-orderProductModel(sequelize);
 typeProductModel(sequelize);
-userSellsProductModel(sequelize);
 productReviewsModel(sequelize);
 users(sequelize);
 usersType(sequelize);
@@ -45,50 +41,49 @@ petTypeInit(sequelize);
 petInit(sequelize);
 vaccineInit(sequelize);
 postInit(sequelize);
+userReviewModel(sequelize);
 
-//hago la relacion de  mucho a uno
-TypeProduct.hasMany(Product);
-Product.belongsTo(TypeProduct);
-
-Product.hasMany(ProductReviews);
-ProductReviews.belongsTo(Product);
-
-Product.hasMany(UserSellsProduct);
-UserSellsProduct.belongsTo(Product);
-
-Users.hasMany(UserSellsProduct);
-UserSellsProduct.belongsTo(Users);
-
-Product.hasMany(OrderProduct);
-OrderProduct.belongsTo(Product);
-
-Order.hasMany(OrderProduct);
-OrderProduct.belongsTo(Order);
-
-Users.hasMany(Order);
-Order.belongsTo(Users);
+// ------------------ Relaciones ---------------------------------
 
 UsersType.hasMany(Users);
 Users.belongsTo(UsersType);
 
-Reviews.hasMany(ProductReviews);
+Reviews.belongsToMany(Users, { through: UserReview });
+
+Users.belongsToMany(Product, { through: "UserSellsProduct" });
+Product.belongsToMany(Users, { through: "UserSellsProduct" });
+
+Users.hasMany(Order);
+Order.belongsTo(Users);
+
+Order.belongsToMany(Product, { through: "OrderProducts" });
+Product.belongsToMany(Order, { through: "OrderProducts" });
+
+TypeProduct.hasMany(Product);
+Product.belongsTo(TypeProduct);
+
+Product.belongsToMany(Reviews, { through: ProductReviews });
+Reviews.belongsToMany(Product, { through: ProductReviews });
+ProductReviews.belongsTo(Product);
 ProductReviews.belongsTo(Reviews);
+Product.hasMany(ProductReviews);
+Reviews.hasMany(ProductReviews);
 
 Users.hasMany(ProductReviews);
 ProductReviews.belongsTo(Users);
 
-//hago la relacion de  mucho a mucho
-Users.belongsToMany(Reviews, { through: "UserReviews" });
-Reviews.belongsToMany(Users, { through: "UserReviews" });
+Post.belongsToMany(Users, { through: "UserPosts" });
+Users.belongsToMany(Post, { through: "UserPosts" });
 
-// -------- Init of Tables -----------
+Post.belongsToMany(Users, { through: "UserRequestsPet" });
+Users.belongsToMany(Post, { through: "UserRequestsPet" });
 
-// -------- Relationships ----------
+Pet.hasOne(Post);
+Post.belongsTo(Pet);
 
-// Relationship 1-1: Pet has one pet type, i.e a Pet can be a dog, cat, bird
 PetType.hasOne(Pet);
+Pet.belongsTo(PetType);
 
-//Relationship n-m: A single Pet can have multiple vaccines and vaccines can be applied to more than one pet
 Pet.belongsToMany(Vaccine, { through: "PetVaccines" });
 Vaccine.belongsToMany(Pet, { through: "PetVaccines" });
 

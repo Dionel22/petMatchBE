@@ -12,9 +12,9 @@ export class Product extends Model<
 > {
   declare id: string;
   declare name: string;
-  declare imagen: string;
   declare price: number;
   declare available: number;
+  declare imagen: string;
   declare averageRating: number;
 }
 

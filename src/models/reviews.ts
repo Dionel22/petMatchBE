@@ -10,6 +10,7 @@ export class Reviews extends Model<
   InferCreationAttributes<Reviews>
 > {
   declare id: string;
+  declare review: string;
   declare totalScore: number;
 }
 
@@ -20,6 +21,12 @@ export default function reviewsModel(sequelize: Sequelize) {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
+      },
+      review: {
+        type: DataTypes.TEXT,
+        validate: {
+          allowEmpty: true,
+        },
       },
       totalScore: {
         type: DataTypes.DOUBLE,

@@ -16,7 +16,7 @@ export class Users extends Model<
   declare name: string;
   declare address: string;
   declare phone: string;
-  declare type: string;
+  declare totalReviews: number;
 }
 
 export default function users(sequelize: Sequelize) {
@@ -54,9 +54,9 @@ export default function users(sequelize: Sequelize) {
         allowNull: false,
       },
 
-      type: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      totalReviews: {
+        type: DataTypes.DOUBLE,
+        allowNull: true,
       },
     },
     {
