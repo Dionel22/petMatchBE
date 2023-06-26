@@ -17,8 +17,8 @@ const sequelize = new Sequelize(
   `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DATABASE}`,
   {
     dialect: "postgres",
-    //logging: false,
-    //native: false,
+    logging: false,
+    native: false,
     dialectOptions: {
       ssl: {
         mode: "require",

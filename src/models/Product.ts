@@ -24,26 +24,16 @@ export default function productModel (sequelize: Sequelize) {
       imagen: {
         type:  DataTypes.STRING,
         allowNull: false,
-        validate: {
-          isUrl: true,
-          msg: "It has to be a valid URL."
-        }
+
       },
       price: {
         type:  DataTypes.DOUBLE,
         allowNull: false,
-         validate: {
-          min: 0,
-          msg: "the minimum price is greater equal to 0"
-        }
+
       },
       available: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        validate: {
-          min: 0,
-          msg: "the minimum available is greater equal to 0"
-        }
       },
       averageRating: {
         type: DataTypes.DOUBLE,
