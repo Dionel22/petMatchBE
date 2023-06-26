@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import routes from "./routes/index";
 
-const { conn } = require("./db");
+import sequelize from "./db";
 
 const server = express();
 
@@ -33,7 +33,7 @@ interface ErrorHTTP {
 server.use(
   (err: ErrorHTTP, req: Request, res: Response, next: NextFunction): void => {
     // eslint-disable-line no-unused-vars
-    conn.sync();
+    sequelize.sync();
     const status = err.status || 500;
     const message = err.message || err;
     console.error(err);
