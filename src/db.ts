@@ -1,5 +1,10 @@
 require("dotenv").config();
-import { Sequelize, Model } from "sequelize";
+import { Sequelize } from "sequelize";
+import petInit, { Pet } from "./models/Pets";
+import { Vaccine, vaccineInit } from "./models/Vaccine";
+import petTypeInit, { PetType } from "./models/PetType";
+import { Post, postInit } from "./models/Post";
+
 import users from "./models/users";
 import usersType from "./models/usersType";
 import reviews from "./models/reviews";
@@ -36,7 +41,20 @@ Users.belongsToMany(Reviews, { through: 'UserReviews'});
 Reviews.belongsToMany(Users, { through: 'UserReviews'});
 
 
-module.exports = {
-  ...sequelize.models,
-  conn: sequelize,
-};
+// -------- Init of Tables -----------
+
+petTypeInit(sequelize);
+petInit(sequelize);
+vaccineInit(sequelize);
+postInit(sequelize);
+
+// -------- Relationships ----------
+
+// Relationship 1-1: Pet has one pet type, i.e a Pet can be a dog, cat, bird
+PetType.hasOne(Pet);
+
+//Relationship n-m: A single Pet can have multiple vaccines and vaccines can be applied to more than one pet
+Pet.belongsToMany(Vaccine, { through: "PetVaccines" });
+Vaccine.belongsToMany(Pet, { through: "PetVaccines" });
+
+export default sequelize;
