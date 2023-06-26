@@ -5,14 +5,17 @@ import {
   InferAttributes,
   InferCreationAttributes,
 } from "sequelize";
+import { Users } from "./users";
+import { Reviews } from "./Reviews";
 
 export class UserReview extends Model<
   InferAttributes<UserReview>,
   InferCreationAttributes<UserReview>
 > {
   declare id: string;
-  declare ReviewedId: string;
+  declare UserId: string;
   declare ReviewerId: string;
+  declare ReviewId: string;
 }
 
 export default function userReviewModel(sequelize: Sequelize) {
@@ -23,11 +26,11 @@ export default function userReviewModel(sequelize: Sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      ReviewedId: {
+      UserId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         references: {
-          model: "Users",
+          model: Users,
           key: "id",
         },
       },
@@ -35,7 +38,15 @@ export default function userReviewModel(sequelize: Sequelize) {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         references: {
-          model: "Users",
+          model: Users,
+          key: "id",
+        },
+      },
+      ReviewId: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        references: {
+          model: Reviews,
           key: "id",
         },
       },
