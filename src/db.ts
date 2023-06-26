@@ -1,18 +1,20 @@
 require("dotenv").config();
-import { Sequelize, Model } from "sequelize";
-import productModel from "./models/Product";
-import orderModel from "./models/Order";
-import typeProductModel from "./models/TypeProduct";
-import userSellsProductModel from "./models/UserSellsProduct";
-import productReviewsModel from "./models/ProductReviews";
-import orderProductModel from "./models/OrderProducts";
+import { Sequelize } from "sequelize";
+import productModel, { Product } from "./models/Product";
+import orderModel, { Order } from "./models/Order";
+import typeProductModel, { TypeProduct } from "./models/TypeProduct";
+import userSellsProductModel, {
+  UserSellsProduct,
+} from "./models/UserSellsProduct";
+import productReviewsModel, { ProductReviews } from "./models/ProductReviews";
+import orderProductModel, { OrderProduct } from "./models/OrderProducts";
 import petInit, { Pet } from "./models/Pets";
 import { Vaccine, vaccineInit } from "./models/Vaccine";
 import petTypeInit, { PetType } from "./models/PetType";
 import { Post, postInit } from "./models/Post";
-import users from "./models/users";
-import usersType from "./models/usersType";
-import reviewsModel from "./models/Reviews";
+import users, { Users } from "./models/users";
+import usersType, { UsersType } from "./models/usersType";
+import reviewsModel, { Reviews } from "./models/Reviews";
 
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =
   process.env;
@@ -39,19 +41,10 @@ productReviewsModel(sequelize);
 users(sequelize);
 usersType(sequelize);
 reviewsModel(sequelize);
-
-//saco los modelos de sequelize
-const {
-  Product,
-  Order,
-  TypeProduct,
-  UserSellsProduct,
-  ProductReviews,
-  OrderProduct,
-  Users,
-  UsersType,
-  Reviews,
-} = sequelize.models;
+petTypeInit(sequelize);
+petInit(sequelize);
+vaccineInit(sequelize);
+postInit(sequelize);
 
 //hago la relacion de  mucho a uno
 TypeProduct.hasMany(Product);
@@ -89,11 +82,6 @@ Users.belongsToMany(Reviews, { through: "UserReviews" });
 Reviews.belongsToMany(Users, { through: "UserReviews" });
 
 // -------- Init of Tables -----------
-
-petTypeInit(sequelize);
-petInit(sequelize);
-vaccineInit(sequelize);
-postInit(sequelize);
 
 // -------- Relationships ----------
 

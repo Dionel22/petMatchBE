@@ -1,6 +1,15 @@
-import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes, } from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  Sequelize,
+  InferAttributes,
+  InferCreationAttributes,
+} from "sequelize";
 
-class Product extends Model<InferAttributes<Product>, InferCreationAttributes<Product>> {
+export class Product extends Model<
+  InferAttributes<Product>,
+  InferCreationAttributes<Product>
+> {
   declare id: string;
   declare name: string;
   declare imagen: string;
@@ -9,27 +18,25 @@ class Product extends Model<InferAttributes<Product>, InferCreationAttributes<Pr
   declare averageRating: number;
 }
 
-export default function productModel (sequelize: Sequelize) {
-    Product.init(
+export default function productModel(sequelize: Sequelize) {
+  Product.init(
     {
-     id: {
+      id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
       name: {
-        type:  DataTypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       imagen: {
-        type:  DataTypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
-
       },
       price: {
-        type:  DataTypes.DOUBLE,
+        type: DataTypes.DOUBLE,
         allowNull: false,
-
       },
       available: {
         type: DataTypes.INTEGER,
@@ -38,11 +45,13 @@ export default function productModel (sequelize: Sequelize) {
       averageRating: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-      }
-    },{
-    sequelize,
-    paranoid: true,
-    timestamps: false
-  })
-  return Product
+      },
+    },
+    {
+      sequelize,
+      paranoid: true,
+      timestamps: false,
+    }
+  );
+  return Product;
 }
