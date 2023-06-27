@@ -16,6 +16,9 @@ Amberlis Laya - amberlislaya
 `get/product`
 Trae Todos Los Productos.
 
+`get/product?name=`
+Busca Todos Los Productos que coincida con el nombre.
+
 `get/product/:id`
 Trae Producto Por id.
 

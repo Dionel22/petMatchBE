@@ -25,10 +25,10 @@ export const getHandleProductDetail = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         const response = await productDetail(id)
-        res.status(200).json(response)
+        return res.status(200).json(response)
     } catch (error) {
         console.log(error)
-        res.status(400).json({msg: error})
+        return res.status(400).json({msg: error})
     }
 }
 
@@ -37,9 +37,9 @@ export const postHandleProduct = async (req: Request, res: Response) => {
     try {
         const { name, imagen, price, available, averageRating, typeId } = req.body;
         const response = await postProduct(name, imagen, price, available, averageRating, typeId)
-        res.status(200).json(response)
+        return res.status(200).json(response)
     } catch (error) {
         console.log(error)
-        res.status(400).json({msg: error})
+        return res.status(400).json({msg: error})
     }
 }
