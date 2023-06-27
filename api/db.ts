@@ -13,11 +13,10 @@ import usersType, { UsersType } from "./models/UserType";
 import reviewsModel, { Reviews } from "./models/Review";
 import userReviewModel, { UserReview } from "./models/UserReview";
 
-const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_DATABASE } =
-  process.env;
+const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DATABASE}`,
+  `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}`,
   {
     dialect: "postgres",
     dialectOptions: {
