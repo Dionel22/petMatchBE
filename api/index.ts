@@ -41,7 +41,7 @@ server.use(
   }
 );
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync().then(() => {
   server.listen(3001, () => {
     console.log("%s listening at 3001");
   });
