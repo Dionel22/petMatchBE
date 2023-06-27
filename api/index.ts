@@ -23,10 +23,6 @@ server.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-server.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
-
 server.use("/", routes);
 
 // Error catching endware.
@@ -45,4 +41,8 @@ server.use(
   }
 );
 
-export default server;
+sequelize.sync({ force: true }).then(() => {
+  server.listen(3001, () => {
+    console.log("%s listening at 3001");
+  });
+});
