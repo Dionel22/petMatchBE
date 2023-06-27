@@ -9,3 +9,20 @@ Nelson Enrique Ortega Beltrán - neortegab.
 Ricardo Dionel Diaz - dionel22
 Jhon Edward Rivera Naranjo - johnedwardrivera
 Amberlis Laya - amberlislaya
+
+## Rutas 
+*Rutas Product
+
+`get/product`
+Trae Todos Los Productos.
+
+`get/product/:id`
+Trae Producto Por id.
+
+`post/product`
+Se crea Producto.
+
+*Ruta TypeProduct
+
+`get/typeProduct`
+Trae Los Tipo De Producto.

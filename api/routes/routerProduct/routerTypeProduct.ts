@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getTypeProduct } from "../handles/handleTypeProduct";
+import { getTypeProduct } from "../../handles/product/handleTypeProduct";
 
 const typeProductRouter = Router();
 
