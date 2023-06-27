@@ -23,6 +23,10 @@ server.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+server.get("/", (req: Request, res: Response) => {
+  res.send("Hello World!");
+});
+
 server.use("/", routes);
 
 // Error catching endware.
