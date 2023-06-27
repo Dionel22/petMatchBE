@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "nodemon api/index.ts",
+    "start": "nodemon index.ts",
     "test": "npm test"
   },
   "repository": {
