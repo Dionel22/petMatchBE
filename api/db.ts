@@ -13,17 +13,12 @@ import usersType, { UsersType } from "./models/UserType";
 import reviewsModel, { Reviews } from "./models/Review";
 import userReviewModel, { UserReview } from "./models/UserReview";
 
-const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE } = process.env;
+const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE, PGPORT } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}`,
+  `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
   {
     dialect: "postgres",
-    dialectOptions: {
-      ssl: {
-        mode: "require",
-      },
-    },
   }
 );
 
