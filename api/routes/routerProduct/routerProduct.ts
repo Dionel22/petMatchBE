@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { getHandleAllProduct, getHandleProductDetail, postHandleProduct } from "../../handles/product/handlePetShop";
+import {
+  getHandleAllProduct,
+  getHandleProductDetail,
+  postHandleProduct,
+} from "../../handlers/product/handlePetShop";
 
 const productRouter = Router();
 
