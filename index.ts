@@ -1,5 +1,5 @@
-import server from "./src/app";
-import sequelize from "./src/db";
+import server from "./api/app";
+import sequelize from "./api/db";
 
 sequelize.sync({ force: true }).then(() => {
   server.listen(3001, () => {
