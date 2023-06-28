@@ -1,10 +1,9 @@
-import { Router } from "express"; 
-import {posAlltOrde, getOrders} from "../handles/handleOrders" 
+import { Router } from "express";
+import { posAlltOrde, getOrders } from "../handlers/handleOrders";
 
-const OrderRouter = Router(); 
+const OrderRouter = Router();
 
-OrderRouter.post("/", posAlltOrde)   
-OrderRouter.get("/", getOrders) 
-
+OrderRouter.post("/", posAlltOrde);
+OrderRouter.get("/", getOrders);
 
 export default OrderRouter;
