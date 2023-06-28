@@ -14,7 +14,7 @@ export class Order extends Model<
   declare taxes: number;
   declare price: number;
   declare totalPrice: number;
-  declare purchaseDate: Date;
+  declare purchaseDate: string;
 }
 
 export default function orderModel(sequelize: Sequelize) {

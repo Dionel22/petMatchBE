@@ -8,4 +8,9 @@ Luis Felipe Seminario Lopez luiggi2092
 Nelson Enrique Ortega Beltrán - neortegab.
 Ricardo Dionel Diaz - dionel22
 Jhon Edward Rivera Naranjo - johnedwardrivera
-Amberlis Laya - amberlislaya
+Amberlis Laya - amberlislaya 
+
+Rutas 
+
+Rutas Orders 
+post/Order = se crea un pedido
