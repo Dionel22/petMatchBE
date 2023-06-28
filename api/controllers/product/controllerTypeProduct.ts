@@ -1,4 +1,4 @@
-const { TypeProduct } = require("../db")
+const { TypeProduct } = require("../../models/ProductType")
 
 export const getAllTypeProduct = async () => {
     const array = ["cama", "plato", "Transportador", "Collar"]

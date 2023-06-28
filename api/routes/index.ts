@@ -1,11 +1,11 @@
 import { Router } from "express";
-import petShopRouter from "./routerPetShop";
-import typeProductRouter from "./routerTypeProduct"; 
+import productRouter from "./routerProduct/routerProduct";
+import typeProductRouter from "./routerProduct/routerTypeProduct"; 
 import OrderRouter from "./routerOrders"
 
 const router = Router();
 
-router.use("/petShop", petShopRouter)
+router.use("/product", productRouter)
 router.use("/typeProduct", typeProductRouter) 
 router.use("/Order", OrderRouter)
 
