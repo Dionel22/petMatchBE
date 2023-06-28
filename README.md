@@ -8,4 +8,28 @@ Luis Felipe Seminario Lopez luiggi2092
 Nelson Enrique Ortega Beltrán - neortegab.
 Ricardo Dionel Diaz - dionel22
 Jhon Edward Rivera Naranjo - johnedwardrivera
-Amberlis Laya - amberlislaya
+Amberlis Laya - amberlislaya 
+
+## Rutas 
+*Rutas Product
+
+`get/product`
+Trae Todos Los Productos.
+
+`get/product?name=`
+Busca Todos Los Productos que coincida con el nombre.
+
+`get/product/:id`
+Trae Producto Por id.
+
+`post/product`
+Se crea Producto.
+
+*Ruta TypeProduct
+
+`get/typeProduct`
+Trae Los Tipo De Producto.
+Rutas 
+
+Rutas Orders 
+post/Order = se crea un pedido
