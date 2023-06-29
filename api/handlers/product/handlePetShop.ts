@@ -1,6 +1,12 @@
 import {  Request, Response } from "express";
 import { getAllProduct, productDetail, postProduct } from "../../controllers/product/controllerProduct";
-
+interface Producto {
+    name: string;
+    price: number;
+    imagen: string; 
+    available: number;
+    averageRating: number;
+}
 
 // trae todos los productos y busca por nombre
 export const getHandleAllProduct = async (req: Request, res: Response) => {
@@ -8,10 +14,10 @@ export const getHandleAllProduct = async (req: Request, res: Response) => {
         const { name } = req.query;
         const response = await getAllProduct()
         if (name) {
-            let responseName = response.filter((el: any) => el.name.toLocaleLowerCase().includes(name));
+            const searchName = name.toString().toLowerCase()
+            let responseName = response.filter((el: Producto) => el.name.toLowerCase().includes(searchName));
             if (responseName.length === 0) return res.status(200).json({ msg: `No product found with the name ${name}.`});
             return res.status(200).json(responseName)
-        
         }
         return res.status(200).json(response)
     } catch (error) {
