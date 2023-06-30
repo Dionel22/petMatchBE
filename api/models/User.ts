@@ -12,11 +12,12 @@ export class Users extends Model<
 > {
   declare id: string;
   declare email: string;
-  declare password_key: string;
+  declare password_key: string | null;
   declare name: string;
-  declare address: string;
-  declare phone: string;
-  declare totalReviews: number;
+  declare address: string | null;
+  declare phone: string | null;
+  declare totalReviews: number | null;
+  declare googleId: string;
 }
 
 export default function users(sequelize: Sequelize) {
@@ -57,6 +58,10 @@ export default function users(sequelize: Sequelize) {
       totalReviews: {
         type: DataTypes.DOUBLE,
         allowNull: true,
+      },
+      googleId: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {
