@@ -9,7 +9,6 @@ interface Producto {
     averageRating: number;
 }
 
-
 // trae todos los productos y busca por nombre
 export const getHandleAllProduct = async (req: Request, res: Response) => {
     try {
