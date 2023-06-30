@@ -1,5 +1,6 @@
 import {  Request, Response } from "express";
 import { getAllProduct, productDetail, postProduct } from "../../controllers/product/controllerProduct";
+
 interface Producto {
     name: string;
     price: number;
@@ -16,13 +17,13 @@ export const getHandleAllProduct = async (req: Request, res: Response) => {
         if (name) {
             const searchName = name.toString().toLowerCase()
             let responseName = response.filter((el: Producto) => el.name.toLowerCase().includes(searchName));
-            if (responseName.length === 0) return res.status(200).json({ msg: `No product found with the name ${name}.`});
+            if (responseName.length === 0) return res.status(200).json({ message: `No product found with the name ${name}.`});
             return res.status(200).json(responseName)
         }
         return res.status(200).json(response)
     } catch (error) {
         console.log(error)
-        return res.status(400).json({msg: error})
+        return res.status(400).json({message: error})
     }
 }
 
@@ -34,7 +35,7 @@ export const getHandleProductDetail = async (req: Request, res: Response) => {
         return res.status(200).json(response)
     } catch (error) {
         console.log(error)
-        return res.status(400).json({msg: error})
+        return res.status(400).json({message: error})
     }
 }
 
@@ -46,6 +47,6 @@ export const postHandleProduct = async (req: Request, res: Response) => {
         return res.status(200).json(response)
     } catch (error) {
         console.log(error)
-        return res.status(400).json({msg: error})
+        return res.status(400).json({message: error})
     }
 }
