@@ -1,5 +1,6 @@
 import {  Request, Response } from "express";
 import { getAllProduct, productDetail, postProduct } from "../../controllers/product/controllerProduct";
+
 interface Producto {
     name: string;
     price: number;
@@ -7,6 +8,7 @@ interface Producto {
     available: number;
     averageRating: number;
 }
+
 
 // trae todos los productos y busca por nombre
 export const getHandleAllProduct = async (req: Request, res: Response) => {
