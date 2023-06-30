@@ -25,9 +25,6 @@ export default function petTypeInit(sequelize: Sequelize) {
       type: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
       },
     },
     {
