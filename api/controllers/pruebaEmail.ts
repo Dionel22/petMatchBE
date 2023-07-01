@@ -15,14 +15,14 @@ const config = {
 export const enviado = async () => {
     const transport = nodemilar.createTransport(config)
     const mensaje = {
-        from: USER_MAIL1,//"email el que lo quiero enviar",
+        //"email el que lo quiero enviar",
+        from: USER_MAIL1,
         to: USER_MAIL1,
         subject: "correo de prueba",
         text: "envio desde back end"
     }
     const info = await transport.sendMail(mensaje)
     console.log(info)
-    return info;
 }
 
 //llamar la funcion desde handle create un handle y ruta
