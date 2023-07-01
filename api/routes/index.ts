@@ -5,11 +5,13 @@ import petRouter from "./routerPet/petRouter";
 import OrderRouter from "./routerOrders";
 import vaccineRouter from "./routerVaccine/vaccineRouter";
 import postRouter from "./routerPost/postRouter";
+import petTypeRouter from "./routerPet/routerpetType";
 
 const router = Router();
 
 router.use("/posts", postRouter);
 router.use("/pets", petRouter);
+router.use("/petTypes", petTypeRouter);
 router.use("/product", productRouter);
 router.use("/typeProduct", typeProductRouter);
 router.use("/order", OrderRouter);

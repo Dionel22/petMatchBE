@@ -32,17 +32,10 @@ export default function petInit(sequelize: Sequelize) {
       },
       age: {
         type: DataTypes.DOUBLE,
-        validate: {
-          min: 0.0,
-          max: 20.0,
-        },
         allowNull: false,
       },
       breed: {
         type: DataTypes.STRING,
-        validate: {
-          notEmpty: true,
-        },
         allowNull: false,
       },
       sterilization: {
@@ -51,9 +44,6 @@ export default function petInit(sequelize: Sequelize) {
       },
       image: {
         type: DataTypes.STRING,
-        validate: {
-          isUrl: true,
-        },
         allowNull: false,
       },
     },
