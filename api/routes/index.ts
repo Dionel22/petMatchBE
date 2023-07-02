@@ -7,6 +7,8 @@ import vaccineRouter from "./routerVaccine/vaccineRouter";
 import postRouter from "./routerPost/postRouter";
 import petTypeRouter from "./routerPet/routerpetType";
 import EnvioRouter from "./pruebaE";
+import userRouter from "./routerUser/userRouter";
+import userRouterAuthenticaction from "./routerAuthentication/routerAuthentication";
 
 const router = Router();
 
@@ -18,5 +20,7 @@ router.use("/typeProduct", typeProductRouter);
 router.use("/order", OrderRouter);
 router.use("/vaccines", vaccineRouter);
 router.use("/prueba", EnvioRouter);
+router.use("/user", userRouter);
+router.use("/login", userRouterAuthenticaction);
 
 export default router;

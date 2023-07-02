@@ -9,7 +9,7 @@ import { Vaccine, vaccineInit } from "./models/Vaccine";
 import petTypeInit, { PetType } from "./models/PetType";
 import { Post, postInit } from "./models/Post";
 import users, { Users } from "./models/User";
-import usersType, { UsersType } from "./models/UserType";
+import usersTypeModel, { UsersType } from "./models/UsersType";
 import reviewsModel, { Reviews } from "./models/Review";
 import userReviewModel, { UserReview } from "./models/UserReview";
 
@@ -29,7 +29,7 @@ orderModel(sequelize);
 typeProductModel(sequelize);
 productReviewsModel(sequelize);
 users(sequelize);
-usersType(sequelize);
+usersTypeModel(sequelize);
 reviewsModel(sequelize);
 petTypeInit(sequelize);
 petInit(sequelize);
