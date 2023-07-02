@@ -2,6 +2,8 @@ const { Users } = require ("../../../models/User");
 const { UsersType } = require("../../../models/UsersType");
 const { v4: uuidv4 } = require('uuid');
 import bcrypt from 'bcrypt';
+import { sendEmail } from '../../../utils/mailer';
+import { getUserByEmail } from '../get/getUserByEmail';
 
 export const postUser = async (
     name:string, 
@@ -17,6 +19,11 @@ export const postUser = async (
     if (!phone || phone === "") throw new Error("The user must have a phone");
     if (!type || type === "") throw new Error("The user must have a type");
 
+    const userAlreadyExist = await getUserByEmail(email);
+
+    if(userAlreadyExist) {
+        throw new Error("A user with the same email already exists.")
+    }
 
     const user = await Users.create( { 
         id: uuidv4(),
@@ -32,7 +39,9 @@ export const postUser = async (
     if (userType) {   
         console.log(userType) 
         await user.setUsersType(userType)
-        return await user.save(); 
+        const finalUser = await user.save(); 
+        sendEmail(finalUser.email);
+        return finalUser;
     } else {
         throw new Error("The given type is not accepted, must be admin or client or organization")
     }
