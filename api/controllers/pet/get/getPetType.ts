@@ -5,6 +5,6 @@ export const getAllPetTypes = async () => {
     array.forEach(element => {
         PetType.findOrCreate({ where: {type: element}});
     });
-    const responseDB = await PetType.findAll({attributes: ["type"]});
+    const responseDB = await PetType.findAll({attributes: ["type", "id"]});
     return responseDB
 }
