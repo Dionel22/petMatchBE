@@ -8,7 +8,5 @@ export const getUserByEmail = async (email: string) => {
       attributes: ["name"]
   }] 
 });
-
-  if (!user) throw new Error(`The user with id ${email} doesn't exist`);
   return user;
 };
