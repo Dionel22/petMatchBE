@@ -24,9 +24,7 @@ export default function reviewsModel(sequelize: Sequelize) {
       },
       review: {
         type: DataTypes.TEXT,
-        validate: {
-          allowEmpty: true,
-        },
+        allowNull: false,
       },
       totalScore: {
         type: DataTypes.DOUBLE,
