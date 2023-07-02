@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { userController } from "../../controllers/users/indexUser";
 import bcrypt from 'bcrypt';
+const { generateAccessToken } = require("../../utils/tokensManager")
 
 
 const handlerUserAuthentication = async (req: Request, res: Response) => {
@@ -29,8 +30,13 @@ const handlerUserAuthentication = async (req: Request, res: Response) => {
         const { passwordKey, ...newUser } = user.toJSON(); 
 
         console.log(newUser)
+
+        const token = await generateAccessToken(newUser.id);
+
+        console.log(token)
+
         // usuario autenticado
-        return res.status(200).json(newUser);
+        return res.status(200).json({user: newUser, accessToken: token});
 
     } catch (error) {
         // Si hay fallas
