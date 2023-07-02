@@ -13,7 +13,7 @@ export class UsersType extends Model<
   declare name: string;
 }
 
-export default function usersType(sequelize: Sequelize) {
+export default function usersTypeModel(sequelize: Sequelize) {
   UsersType.init(
     {
       id: {

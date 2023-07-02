@@ -12,7 +12,7 @@ export class Users extends Model<
 > {
   declare id: string;
   declare email: string;
-  declare password_key: string;
+  declare passwordKey: string;
   declare name: string;
   declare address: string;
   declare phone: string;
@@ -34,7 +34,8 @@ export default function users(sequelize: Sequelize) {
         allowNull: false,
       },
 
-      password_key: {
+      passwordKey: {
+        field: 'password_key',
         type: DataTypes.STRING,
         allowNull: false,
       },
