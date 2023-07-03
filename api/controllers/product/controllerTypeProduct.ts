@@ -5,7 +5,7 @@ export const getAllTypeProduct = async () => {
     array.forEach(element => {
         TypeProduct.findOrCreate({ where: {name: element}});
     });
-    const responseDB = await TypeProduct.findAll({attributes: ["name"]});
+    const responseDB = await TypeProduct.findAll({attributes: ["name", "id"]});
     return responseDB
 }
 
