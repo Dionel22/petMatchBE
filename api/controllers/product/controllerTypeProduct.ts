@@ -1,7 +1,7 @@
 const { TypeProduct } = require("../../models/ProductType")
 
 export const getAllTypeProduct = async () => {
-    const array = ["cama", "plato", "Transportador", "Collar"]
+    const array = ["cama", "plato", "Transportador", "Collar", "Juguetes", "Combos"]
     array.forEach(element => {
         TypeProduct.findOrCreate({ where: {name: element}});
     });
