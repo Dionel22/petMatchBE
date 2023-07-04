@@ -18,7 +18,13 @@ const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE, PGPORT } = process.env;
 const sequelize = new Sequelize(
   `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}`,
   {
-    dialect: "postgres",
+    logging: false,
+    native: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+      }
+    }
   }
 );
 
