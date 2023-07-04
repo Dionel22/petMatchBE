@@ -12,6 +12,7 @@ export class Order extends Model<
 > {
   declare id: string;
   declare totalPrice: number;
+  declare  purchaseDate: Date;
 }
 
 export default function orderModel(sequelize: Sequelize) {
@@ -26,6 +27,10 @@ export default function orderModel(sequelize: Sequelize) {
         type: DataTypes.DOUBLE,
         allowNull: false,
       },
+      purchaseDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
     },
     {
       sequelize,
