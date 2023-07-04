@@ -11,10 +11,7 @@ export class Order extends Model<
   InferCreationAttributes<Order>
 > {
   declare id: string;
-  declare taxes: number;
-  declare price: number;
   declare totalPrice: number;
-  declare purchaseDate: string;
 }
 
 export default function orderModel(sequelize: Sequelize) {
@@ -25,30 +22,14 @@ export default function orderModel(sequelize: Sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      taxes: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-      },
-      price: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-      },
       totalPrice: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-      },
-      purchaseDate: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        validate: {
-          isDate: true,
-        },
       },
     },
     {
       sequelize,
       paranoid: true,
-      timestamps: false,
     }
   );
   return Order;
