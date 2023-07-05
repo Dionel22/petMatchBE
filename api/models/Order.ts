@@ -34,6 +34,7 @@ export default function orderModel(sequelize: Sequelize) {
     },
     {
       sequelize,
+      timestamps: false,
       paranoid: true,
     }
   );
