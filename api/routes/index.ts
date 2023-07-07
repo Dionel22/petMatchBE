@@ -8,6 +8,7 @@ import postRouter from "./routerPost/postRouter";
 import petTypeRouter from "./routerPet/routerpetType";
 import userRouter from "./routerUser/userRouter";
 import userRouterAuthenticaction from "./routerAuthentication/routerAuthentication";
+import perfilRouter from "./routerPerfil/perfilRouter";
 
 
 const router = Router();
@@ -21,6 +22,7 @@ router.use("/order", OrderRouter);
 router.use("/vaccines", vaccineRouter);
 router.use("/user", userRouter);
 router.use("/login", userRouterAuthenticaction);
+router.use("/perfil", perfilRouter);
 
 
 export default router;
