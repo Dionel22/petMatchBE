@@ -50,7 +50,6 @@ export default function productModel(sequelize: Sequelize) {
     {
       sequelize,
       paranoid: true,
-      timestamps: false,
     }
   );
   return Product;

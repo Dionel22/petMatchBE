@@ -10,6 +10,7 @@ import userRouter from "./routerUser/userRouter";
 import userRouterAuthenticaction from "./routerAuthentication/routerAuthentication"; 
 import userTypeRouter from "./routerUserType/routerUserType"   
 import usernameRouter from "./routerUserType/routerUserTypename" 
+import perfilRouter from "./routerPerfil/perfilRouter";
 
 
 
@@ -26,7 +27,7 @@ router.use("/user", userRouter);
 router.use("/login", userRouterAuthenticaction);
 router.use("/usertype",userTypeRouter)   
 router.use("/typeuser",usernameRouter)
-
+router.use("/perfil", perfilRouter);
 
 
 export default router;
