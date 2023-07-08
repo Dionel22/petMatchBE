@@ -11,6 +11,7 @@ import userRouterAuthenticaction from "./routerAuthentication/routerAuthenticati
 import userTypeRouter from "./routerUserType/routerUserType"   
 import usernameRouter from "./routerUserType/routerUserTypename" 
 import perfilRouter from "./routerPerfil/perfilRouter";
+import adopcionRouter from "./adopcion/adopcion";
 
 
 
@@ -28,6 +29,7 @@ router.use("/login", userRouterAuthenticaction);
 router.use("/usertype",userTypeRouter)   
 router.use("/typeuser",usernameRouter)
 router.use("/perfil", perfilRouter);
+router.use("/adopcion", adopcionRouter);
 
 
 export default router;

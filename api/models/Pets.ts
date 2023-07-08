@@ -16,6 +16,7 @@ export class Pet extends Model<
   declare breed: string;
   declare sterilization: boolean;
   declare image: string;
+  declare adoptedUserId: string | null;
 }
 
 export default function petInit(sequelize: Sequelize) {
@@ -45,6 +46,9 @@ export default function petInit(sequelize: Sequelize) {
       image: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      adoptedUserId: {
+        type: DataTypes.STRING,
       },
     },
     {
