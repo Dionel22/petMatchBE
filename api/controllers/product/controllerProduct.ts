@@ -3,6 +3,7 @@ const { TypeProduct } = require("../../models/ProductType")
 
 export const getAllProduct = async () => {
     const allPetShop = await Product.findAll({
+        order: [["createdAt", "DESC"]],
         include: { model: TypeProduct, attributes: ["name"] }
     });
     return allPetShop;
