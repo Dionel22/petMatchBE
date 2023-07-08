@@ -9,6 +9,10 @@ import petTypeRouter from "./routerPet/routerpetType";
 import userRouter from "./routerUser/userRouter";
 import userRouterAuthenticaction from "./routerAuthentication/routerAuthentication";
 import userRouterG from "./userRouterG/userRouterG";
+import userTypeRouter from "./routerUserType/routerUserType"   
+import usernameRouter from "./routerUserType/routerUserTypename" 
+import perfilRouter from "./routerPerfil/perfilRouter";
+
 
 
 const router = Router();
@@ -23,4 +27,9 @@ router.use("/vaccines", vaccineRouter);
 router.use("/user", userRouter);
 router.use("/login", userRouterAuthenticaction);
 router.use("/login/google", userRouterG);
+router.use("/usertype",userTypeRouter)   
+router.use("/typeuser",usernameRouter)
+router.use("/perfil", perfilRouter);
+
+
 export default router;
