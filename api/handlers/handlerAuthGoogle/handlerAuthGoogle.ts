@@ -3,9 +3,7 @@ import { OAuth2Client } from 'google-auth-library';
 import { postUser } from '../../controllers/users/post/postUser'; 
 import { userGoogleController } from '../../controllers/usersGoogle/indexUserG';
 import { generateAccessToken } from '../../utils/tokensManager';
-
-const CLIENT_ID = "455768951489-dpmia14fe22vcrimo4fmgbtqnngab2b7.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
+const  { CLIENT_ID, CLIENT_SECRET } = process.env;
 
 const client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET);
 
