@@ -58,7 +58,8 @@ Product.belongsToMany(Users, { through: "UserSellsProduct" });
 Users.hasMany(Order);
 Order.belongsTo(Users);
 
-Adopcions.hasOne(Users, { foreignKey: 'adopcionId' });
+Adopcions.belongsTo(Users, { foreignKey: 'adopcionId' });
+Users.hasOne(Adopcions, { foreignKey: 'adopcionId' });
 
 Order.belongsToMany(Product, { through: "OrderProducts" });
 Product.belongsToMany(Order, { through: "OrderProducts" });

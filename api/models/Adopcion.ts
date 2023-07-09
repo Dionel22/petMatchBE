@@ -15,7 +15,7 @@ import {
     declare lastName: string;
     declare email: string;
     declare address: string;
-    declare phone: number;
+    declare phone: string;
     declare economicSituation: string;
     declare previousPetExperience: string;
     declare petAllergy: string;
@@ -50,7 +50,7 @@ import {
           allowNull: false,
         },
         phone: {
-          type: DataTypes.DOUBLE,
+          type: DataTypes.STRING,
           allowNull: false,
         },
         economicSituation: {
