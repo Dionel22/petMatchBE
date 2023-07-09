@@ -17,6 +17,7 @@ export class Users extends Model<
   declare address: string;
   declare phone: string;
   declare totalReviews: number;
+  declare deletedAt: Date | null;
 }
 
 export default function users(sequelize: Sequelize) {
@@ -58,6 +59,12 @@ export default function users(sequelize: Sequelize) {
       totalReviews: {
         type: DataTypes.DOUBLE,
         allowNull: true,
+      },
+
+      deletedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        defaultValue: null,
       },
     },
     {
