@@ -15,6 +15,7 @@ import {
     declare lastName: string;
     declare email: string;
     declare address: string;
+    declare pais: string | null;
     declare phone: string;
     declare economicSituation: string;
     declare previousPetExperience: string;
@@ -48,6 +49,10 @@ import {
         address: {
           type: DataTypes.STRING,
           allowNull: false,
+        },
+        pais: {
+          type: DataTypes.STRING,
+          allowNull: true,
         },
         phone: {
           type: DataTypes.STRING,
