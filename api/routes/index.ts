@@ -12,6 +12,8 @@ import userRouterG from "./userRouterG/userRouterG";
 import userTypeRouter from "./routerUserType/routerUserType"   
 import usernameRouter from "./routerUserType/routerUserTypename" 
 import perfilRouter from "./routerPerfil/perfilRouter";
+import formularioRouter from "./routerFormulario/formulario";
+import adoptRouter from "./routerAdopt/routerAdopt";
 
 
 
@@ -30,6 +32,8 @@ router.use("/login/google", userRouterG);
 router.use("/usertype",userTypeRouter)   
 router.use("/typeuser",usernameRouter)
 router.use("/perfil", perfilRouter);
+router.use("/forms", formularioRouter);
+router.use("/adopts", adoptRouter);
 
 
 export default router;

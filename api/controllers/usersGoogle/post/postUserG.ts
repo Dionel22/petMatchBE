@@ -1,12 +1,10 @@
-
+require("dotenv").config();
+const { CLIENT_ID, CLIENT_SECRET } = process.env;
 // google
 import { OAuth2Client } from 'google-auth-library';
 // controllers
 import { postUser } from '../../users/post/postUser';
 
-
-const CLIENT_ID = "455768951489-dpmia14fe22vcrimo4fmgbtqnngab2b7.apps.googleusercontent.com";
-const CLIENT_SECRET = "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"
 
 const client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET);
 
