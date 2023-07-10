@@ -12,6 +12,7 @@ import users, { Users } from "./models/User";
 import usersTypeModel, { UsersType } from "./models/UsersType";
 import reviewsModel, { Reviews } from "./models/Review";
 import userReviewModel, { UserReview } from "./models/UserReview";
+import adopcionModel, { Adopcions } from "./models/Adopcion";
 
 const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE, PGPORT } = process.env;
 
@@ -42,6 +43,7 @@ petInit(sequelize);
 vaccineInit(sequelize);
 postInit(sequelize);
 userReviewModel(sequelize);
+adopcionModel(sequelize);
 
 // ------------------ Relaciones ---------------------------------
 
@@ -55,6 +57,9 @@ Product.belongsToMany(Users, { through: "UserSellsProduct" });
 
 Users.hasMany(Order);
 Order.belongsTo(Users);
+
+Adopcions.belongsTo(Users, { foreignKey: 'adopcionId' });
+Users.hasOne(Adopcions, { foreignKey: 'adopcionId' });
 
 Order.belongsToMany(Product, { through: "OrderProducts" });
 Product.belongsToMany(Order, { through: "OrderProducts" });
