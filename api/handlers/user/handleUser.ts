@@ -2,22 +2,22 @@ import { Request, Response } from "express";
 import { userController } from "../../controllers/users/indexUser";
 
 const handleAllUsers = async (req: Request, res: Response) => {
-    try {
-        const response = await userController.getAllUser();
-        res.status(200).json(response)
-    } catch (error: any) {
-        res.status(400).json({message: error.message});
-    }
+  try {
+    const response = await userController.getAllUser();
+    res.status(200).json(response)
+  } catch (error: any) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
 const handleUserById = async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params;
-      const response = await userController.getUserById(id);
-      res.status(200).json(response);
-    } catch (error) {
-      res.status(400).json({ message: error });
-    }
+  try {
+    const { id } = req.params;
+    const response = await userController.getUserById(id);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
 };
 
 const handleUserByEmail = async (req: Request, res: Response) => {
@@ -31,25 +31,61 @@ const handleUserByEmail = async (req: Request, res: Response) => {
 };
 
 const handleCreateUser = async (req: Request, res: Response) => {
-    try {
-      const { body  } = req;
-      const response = await userController.postUser(
-         body?.name, 
-         body?.passwordKey, 
-         body?.email,
-         body?.address, 
-         body?.phone,
-         body?.type
-      );
-      res.status(200).json(response);
-    } catch (error: any) {
-      res.status(400).json({ message: error.message });
-    }
-  };
+  try {
+    const { body } = req;
+    const response = await userController.postUser(
+      body?.name,
+      body?.passwordKey,
+      body?.email,
+      body?.address,
+      body?.phone,
+      body?.type
+    );
+    res.status(200).json(response);
+  } catch (error: any) {
+    res.status(400).json({ message: error.message });
+  }
+};
 
-  export const userHandler = {
-    handleAllUsers,
-    handleUserById,
-    handleUserByEmail,
-    handleCreateUser,
-  };
+//Eliminar usuario
+const handleDeleteUser = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  try {
+    const deletedUser = await userController.deleteUser(userId);
+
+    if (deletedUser) {
+      res.status(200).json({ message: "Usuario eliminado." })
+    } else {
+      res.status(404).json({ message: "Usuario no encontrado." })
+    }
+  } catch (error: any){
+    console.error(error);
+    res.status(500).json({message: "Error al eliminar al usuario."})
+  }
+};
+
+//Suspender usuario
+const handleSuspendUser = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  try {
+    const suspendedUser = await userController.suspendUser(userId);
+
+    if (suspendedUser) {
+      res.status(200).json({message: "Usuario suspendido."})
+    } else {
+      res.status(404).json({message: "Usuario no encontrado."})
+    }
+  } catch (error: any) {
+    console.error(error)
+    res.status(500).json({message: "Error al suspender al usuario."})
+  }
+}
+
+export const userHandler = {
+  handleAllUsers,
+  handleUserById,
+  handleUserByEmail,
+  handleCreateUser,
+  handleDeleteUser,
+  handleSuspendUser,
+};
