@@ -69,7 +69,6 @@ export default function users(sequelize: Sequelize) {
     {
       sequelize,
       paranoid: true,
-      timestamps: false,
     }
   );
   return Users;
