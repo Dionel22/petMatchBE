@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { userController } from "../../controllers/users/indexUser";
 
+// usuarios
 const handleAllUsers = async (req: Request, res: Response) => {
     try {
         const response = await userController.getAllUser();
@@ -10,6 +11,7 @@ const handleAllUsers = async (req: Request, res: Response) => {
     }
 };
 
+// por id
 const handleUserById = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -20,6 +22,7 @@ const handleUserById = async (req: Request, res: Response) => {
     }
 };
 
+// por email
 const handleUserByEmail = async (req: Request, res: Response) => {
   try {
     const { email } = req.params;
@@ -30,6 +33,7 @@ const handleUserByEmail = async (req: Request, res: Response) => {
   }
 };
 
+// creacion del user
 const handleCreateUser = async (req: Request, res: Response) => {
     try {
       const { body  } = req;
