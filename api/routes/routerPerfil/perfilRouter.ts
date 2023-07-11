@@ -3,6 +3,6 @@ import { handlePerfil } from "../../handlers/perfil/handlePerfil";
 
 const perfilRouter = Router();
 
-perfilRouter.get("/:id", handlePerfil);
+perfilRouter.get("/", handlePerfil);
 
 export default perfilRouter;
