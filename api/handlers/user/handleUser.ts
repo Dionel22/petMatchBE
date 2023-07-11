@@ -81,6 +81,23 @@ const handleSuspendUser = async (req: Request, res: Response) => {
   }
 }
 
+//Quitar suspension al usuario
+const handleUnsuspendUser = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  try {
+    const unSuspendedUser = await userController.unSuspendUser(userId);
+
+    if (unSuspendedUser) {
+      res.status(200).json({message: "Se quito la suspensión del usuario."})
+    } else {
+      res.status(404).json({message: "Usuario no encontrado."})
+    }
+  } catch (error: any) {
+    console.error(error)
+    res.status(500).json({message: "Error al quitar la suspensión."})
+  }
+}
+
 export const userHandler = {
   handleAllUsers,
   handleUserById,
@@ -88,4 +105,5 @@ export const userHandler = {
   handleCreateUser,
   handleDeleteUser,
   handleSuspendUser,
+  handleUnsuspendUser,
 };

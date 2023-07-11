@@ -2,7 +2,7 @@ import { getAllUser } from "./get/getAllUser";
 import { postUser } from "./post/postUser";
 import { getUserById } from "./get/getUserById";
 import { getUserByEmail } from "./get/getUserByEmail";
-import { suspendUser, deleteUser } from "./delete/deleteUser";
+import { suspendUser, deleteUser, unSuspendUser } from "./delete/deleteUser";
 
 export const userController = {
     getAllUser,
@@ -11,4 +11,5 @@ export const userController = {
     postUser,
     deleteUser,
     suspendUser,
+    unSuspendUser,
 };
