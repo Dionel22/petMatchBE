@@ -1,8 +1,11 @@
 import { Router } from "express";
-import { handleCreateFormulario } from "../../handlers/formulario/handleFormulario";
+import { handleAceptarFormulario, handleAllFormulario, handleCreateFormulario, handleRechazarFormulario } from "../../handlers/formulario/handleFormulario";
 
 const formularioRouter = Router()
 
+formularioRouter.get("/", handleAllFormulario)
+formularioRouter.get("/:id/aceptar", handleAceptarFormulario)
+formularioRouter.get("/:id/rechazar", handleRechazarFormulario)
 formularioRouter.post("/", handleCreateFormulario)
 
 export default formularioRouter;
