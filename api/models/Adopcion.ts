@@ -24,6 +24,7 @@ import {
     declare dailyPetTime: string;
     declare over18: boolean;
     declare adopcionId: string;
+    declare estado: string;
   }
   
   export default function adopcionModel(sequelize: Sequelize) {
@@ -85,6 +86,11 @@ import {
         adopcionId: {
           type: DataTypes.UUID, 
           allowNull: true, // Opcional: Define si la columna permite valores nulos
+        },
+        estado: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          defaultValue: 'pendiente', // Valor por defecto para el estado
         },
       },
       {
