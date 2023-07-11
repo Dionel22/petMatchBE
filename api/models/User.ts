@@ -18,6 +18,7 @@ export class Users extends Model<
   declare phone: string;
   declare totalReviews: number;
   declare isActive: boolean;
+  declare deletedAt: Date | null;
 }
 
 export default function users(sequelize: Sequelize) {
@@ -60,15 +61,25 @@ export default function users(sequelize: Sequelize) {
         type: DataTypes.DOUBLE,
         allowNull: true,
       },
+
       isActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true
+        defaultValue: true,
+      },
+
+      deletedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        defaultValue: null,
+
       },
     },
     {
       sequelize,
       paranoid: true,
+      deletedAt: 'deletedAt',
+
     }
   );
   return Users;
