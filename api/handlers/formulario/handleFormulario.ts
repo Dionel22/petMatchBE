@@ -1,9 +1,19 @@
 require("dotenv").config();
 import { Request, Response } from "express";
 const { Adopcions } = require("../../models/Adopcion")
-import { createFormulario} from "../../controllers/formulario/controllersAdopcion"
+import { allFormulario, createFormulario} from "../../controllers/formulario/controllersAdopcion"
 const { JWT_SECRET } = process.env;//Esta clave es para asegurar la autenticidad del token.
 const jwt = require('jsonwebtoken'); //se utiliza para firmar y verificar tokens JWT; 
+
+export const handleAllFormulario = async (re: Request, res:Response) => {
+   try {
+      const response = await allFormulario()
+      return res.status(200).json(response)
+   } catch (error: any) {
+      console.log(error.message);
+      res.status(400).json({error: error.message})
+   }
+}
 
 export const handleAceptarFormulario = async (req: Request, res: Response) => {
    const { id } = req.params;
@@ -18,6 +28,7 @@ export const handleAceptarFormulario = async (req: Request, res: Response) => {
     res.status(400).json({error: error.message})
    }
 }
+
 export const handleRechazarFormulario = async (req: Request, res: Response) => {
    const { id } = req.params;
    try {
