@@ -4,6 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 import bcrypt from 'bcrypt';
 import { sendEmail } from '../../../utils/mailer';
 import { getUserByEmail } from '../get/getUserByEmail';
+import { getUserById } from '../get/getUserById';
 
 export const postUser = async (
     name:string, 
@@ -25,6 +26,7 @@ export const postUser = async (
         throw new Error("A user with the same email already exists.")
     }
 
+    // creacion de usuario
     const user = await Users.create( { 
         id: uuidv4(),
         name, 
@@ -35,13 +37,23 @@ export const postUser = async (
         totalReviews:0.0
     });
 
+    // juncion con userType
     const userType = await UsersType.findOne({where: {name: type}})
     if (userType) {   
-        console.log(userType) 
+        console.log("----->type",userType.name); 
         await user.setUsersType(userType)
-        const finalUser = await user.save(); 
+        let finalUser = await user.save();
         sendEmail(finalUser.email);
-        return finalUser;
+        console.log("final:", finalUser);
+
+        let formattedUser = await getUserById(finalUser.id);
+
+        if(formattedUser){ // verificacion de que se creo bien
+            return formattedUser;
+        } else {
+            throw new Error("Error at creating the user.")
+        }
+
     } else {
         throw new Error("The given type is not accepted, must be admin or client or organization")
     }

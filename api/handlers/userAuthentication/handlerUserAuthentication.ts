@@ -29,7 +29,7 @@ const handlerUserAuthentication = async (req: Request, res: Response) => {
         }
         const { passwordKey, ...newUser } = user.toJSON(); 
 
-        console.log(newUser)
+        console.log("----------->",newUser, "<----------")
 
         const token = await generateAccessToken(newUser.id);
 

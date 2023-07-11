@@ -72,13 +72,14 @@ export default function users(sequelize: Sequelize) {
         type: DataTypes.DATE,
         allowNull: true,
         defaultValue: null,
+
       },
     },
     {
       sequelize,
       paranoid: true,
-      timestamps: false,
       deletedAt: 'deletedAt',
+
     }
   );
   return Users;
