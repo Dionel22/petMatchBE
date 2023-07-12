@@ -14,8 +14,8 @@ export async function sendEmail(email: string) {
   const mailOptions = {
     from: 'petmatch.noreply@gmail.com',
     to: email,
-    subject: 'Nuevo usuario registrado',
-    text: 'Se ha creado una nueva cuenta de usuario.',
+    subject: '¡Bienvenido a PetMatch! Confirmación de registro exitoso.',
+    text: '¡Gracias por unirte a PetMatch! Estamos encantados de que te hayas registrado y te damos la más cordial bienvenida a nuestra comunidad dedicada a las mascotas. En PetMatch, nos apasiona ayudar a las mascotas a encontrar un hogar amoroso y brindarles el cuidado que merecen. Ya sea que estés interesado en adoptar una mascota o en publicar o comprar productos para tus compañeros peludos, estás en el lugar correcto.',
   };
 
   try {
