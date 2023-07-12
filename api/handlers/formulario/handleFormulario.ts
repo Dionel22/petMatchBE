@@ -64,6 +64,22 @@ export const handleRechazarFormulario = async (req: Request, res: Response) => {
          { where: { id: id } }
        );
      
+   const adopcion = await Adopcions.findByPk(id)
+   if (adopcion) {
+      const email = adopcion.email; // Obtener el mail de la adopción encontrada
+      console.log('Correo electrónico:', email);
+      const mailOptions = {
+         from: 'petmatch.noreply@gmail.com',
+         to: email,
+         subject: 'Adopción rechazada',
+         text: 'Lamentamos informarle que su solicitud de adopción ha sido rechazada.'
+         }
+      transporter.sendMail(mailOptions, (error:any, info:any) => {
+         if (error) { console.log(error)
+         } else { console.log('Correo electrónico enviado: ' + info.response)}
+      })
+   }
+
        // Enviar una respuesta de rechazo
        res.status(200).json({ message: 'Formulario rechazado correctamente' });
      
