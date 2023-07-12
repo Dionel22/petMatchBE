@@ -1,5 +1,5 @@
 const { sign } = require("jsonwebtoken");
-
+require("dotenv").config();
 const { JWT_SECRET } = process.env;// nuevo .env para mi gerador de tokens user
 
 // Generar un token de acceso
