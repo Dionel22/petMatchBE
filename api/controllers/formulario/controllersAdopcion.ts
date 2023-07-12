@@ -4,7 +4,7 @@ const { Adopcions } = require("../../models/Adopcion")
 //me trae todo los formulario
 export const allFormulario = async () => {
     const response = await Adopcions.findAll()
-    return response;
+    return response; "hola"
 }
 
 //se cargan los dato a la tabla Adopcions
