@@ -5,6 +5,16 @@ import { allFormulario, createFormulario} from "../../controllers/formulario/con
 const { JWT_SECRET } = process.env;//Esta clave es para asegurar la autenticidad del token.
 const jwt = require('jsonwebtoken'); //se utiliza para firmar y verificar tokens JWT; 
 
+const nodemailer = require('nodemailer')
+const { MAILER_PASSWORD } = process.env
+const transporter = nodemailer.createTransport({
+   service: 'Gmail',
+   auth: {
+     user: 'petmatch.noreply@gmail.com',
+     pass: MAILER_PASSWORD,
+   },
+ })
+
 export const handleAllFormulario = async (re: Request, res:Response) => {
    try {
       const response = await allFormulario()
@@ -22,6 +32,23 @@ export const handleAceptarFormulario = async (req: Request, res: Response) => {
       { estado: 'aceptado' },
       { where: { id: id } }
     );
+
+    const adopcion = await Adopcions.findByPk(id)
+    if (adopcion) {
+      const email = adopcion.email; // Obtener el mail de la adopción encontrada
+      console.log('Correo electrónico:', email);
+      const mailOptions = {
+         from: 'petmatch.noreply@gmail.com',
+         to: email,
+         subject: 'Adopción aceptada',
+         text: '¡Felicidades! Su solicitud de adopción ha sido aceptada.'
+         }
+      transporter.sendMail(mailOptions, (error:any, info:any) => {
+         if (error) { console.log(error)
+         } else { console.log('Correo electrónico enviado: ' + info.response)}
+      })
+   }
+    // Enviar una respuesta de exitos
     res.status(200).json({ message: 'Formulario aceptado correctamente' });
     } catch (error: any) {
     console.log(error.message)
@@ -37,7 +64,7 @@ export const handleRechazarFormulario = async (req: Request, res: Response) => {
          { where: { id: id } }
        );
      
-       // Enviar una respuesta de éxito
+       // Enviar una respuesta de rechazo
        res.status(200).json({ message: 'Formulario rechazado correctamente' });
      
     } catch (error: any) {

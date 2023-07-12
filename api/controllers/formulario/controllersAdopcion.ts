@@ -3,9 +3,11 @@ const { Adopcions } = require("../../models/Adopcion")
 
 //me trae todo los formulario
 export const allFormulario = async () => {
-    const response = await Adopcions.findAll({
-        where: { estado: "pendiente" },
-    })
+    const response = await Adopcions.findAll(
+    //     {
+    //     where: { estado: "pendiente" },
+    // }
+    );
     return response;
 }
 
