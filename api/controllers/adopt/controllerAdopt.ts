@@ -2,6 +2,7 @@ const { Pet } = require("../../models/Pets")
 const { Vaccine } = require("../../models/Vaccine")
 const { PetType } = require("../../models/PetType")
 
+// traer le id del usurio , hace falta
 export const detailAdopcion = async (id: string) => {
     const responsePet = await Pet.findAll({ 
         where: { adoptedUserId: id },
@@ -11,6 +12,7 @@ export const detailAdopcion = async (id: string) => {
     return responsePet
 }
 
+// adoptar mascotas 
 export const adoptPet = async (userId: string, petId: string ) => {
     const [numRowsUpdated] = await Pet.update(
         { adoptedUserId: userId },
