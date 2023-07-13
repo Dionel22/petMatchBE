@@ -31,7 +31,7 @@ export const handleAceptarFormulario = async (req: Request, res: Response) => {
    const token = req.headers.authorization;
    try {
       const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
-         const userId = decodedToken.id;// se extraer el id del token
+         const userId = decodedToken.userId;// se extraer el id del token
         console.log(id, userId)
 
    /* await Adopcions.update(
@@ -86,7 +86,7 @@ export const handleCreateFormulario = async (req: Request, res: Response) => {
    try {
     const { body }= req
     const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
-    const userId = decodedToken.id;// se extraer el id del token
+    const userId = decodedToken.userId;// se extraer el id del token
     console.log(userId)
     console.log("body ",body)
     //console.log(body)
