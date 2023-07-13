@@ -18,6 +18,10 @@ const handlerUserAuthentication = async (req: Request, res: Response) => {
             });
         }
 
+        if (!user.isActive) {
+            return res.status(401).json({error: "User is inactive"});
+        }
+
         // comparo contraseña ingresada con existente
         const passwordValid = await bcrypt.compare(password, (await user).passwordKey);
 
