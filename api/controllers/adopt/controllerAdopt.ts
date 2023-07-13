@@ -14,7 +14,7 @@ export const detailAdopcion = async (id: string) => {
 export const adoptPet = async (adopcion: any ) => {
     const petId = adopcion.dataValues.petId;
     const userId = adopcion.dataValues.adopcionId;
-  console.log("adopcion",adopcion.dataValues)
+  console.log("adopcion", petId)
   console.log("userId", userId)
   const pet = await Pet.findOne({
     where: {
@@ -31,11 +31,11 @@ export const adoptPet = async (adopcion: any ) => {
     // La mascota está disponible para adopción
     // Realizar las operaciones necesarias
     //console.log(pet);
-     /*const [numRowsUpdated] = await Pet.update(
+     await Pet.update(
         { adoptedUserId: userId },
         { where: { id: petId } }
       );
-      */
+     
      console.log('La columna adoptedUserId se actualizó correctamente.');
   }
 }

@@ -34,10 +34,10 @@ export const handleAceptarFormulario = async (req: Request, res: Response) => {
         // const userId = decodedToken.userId;// se extraer el id del token
       //  console.log(id, userId)
 
-   /* await Adopcions.update(
+    await Adopcions.update(
       { estado: 'aceptado' },
       { where: { id: id } }
-    );*/
+    );
 
     const adopcion = await Adopcions.findByPk(id)
    await adoptPet(adopcion)
