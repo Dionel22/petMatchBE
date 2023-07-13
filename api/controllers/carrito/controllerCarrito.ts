@@ -8,7 +8,8 @@ const { Op } = Sequelize;
 //detalle del carrito
 export const getDetailCarrito = async (id: string) => {
   //console.log(carrito) "3ab1e75b-ce0e-48ea-aecf-ba81b68a9562"
-  const infoProduct = await Order.findByPk(id,{
+  const infoProduct = await Order.findAll({
+    where: {UserId: id},
     include: { model: Product, attributes: ["name", "price"],through: { attributes: [] } }
 })
 
@@ -37,7 +38,7 @@ export const postCarrito = async (userId: string, carrito: any) => {
       },
     },
   });
-  await orderCreate.setUsers(userId);
+  await orderCreate.setUser(userId);
   await orderCreate.addProduct(dbase);
   //console.log(orderCreate);
   return orderCreate

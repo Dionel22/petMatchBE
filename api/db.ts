@@ -55,8 +55,8 @@ Reviews.belongsToMany(Users, { through: UserReview });
 Users.belongsToMany(Product, { through: "UserSellsProduct" });
 Product.belongsToMany(Users, { through: "UserSellsProduct" });
 
-Users.hasMany(Order);
-Order.belongsTo(Users);
+Order.belongsTo(Users, { foreignKey: 'UserId' }); // Asegúrate de utilizar el nombre correcto de la clave extranjera en la tabla Order
+
 
 Adopcions.belongsTo(Users, { foreignKey: 'adopcionId' });
 Users.hasOne(Adopcions, { foreignKey: 'adopcionId' });
