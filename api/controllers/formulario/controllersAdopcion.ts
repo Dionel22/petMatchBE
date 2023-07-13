@@ -12,8 +12,9 @@ export const allFormulario = async () => {
 }
 
 //se cargan los dato a la tabla Adopcions
-export const createFormulario = async (id: string, body: any) => {
+export const createFormulario = async ( body: any) => {
     const { 
+        id,
         name, 
         lastName, 
         email, 

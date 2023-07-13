@@ -11,8 +11,9 @@ export const detailAdopcion = async (id: string) => {
     return responsePet
 }
 
-export const adoptPet = async (userId: string, adopcion: any ) => {
+export const adoptPet = async (adopcion: any ) => {
     const petId = adopcion.dataValues.petId;
+    const userId = adopcion.dataValues.adopcionId;
   console.log("adopcion",adopcion.dataValues)
   console.log("userId", userId)
   const pet = await Pet.findOne({
@@ -29,7 +30,7 @@ export const adoptPet = async (userId: string, adopcion: any ) => {
   } else {
     // La mascota está disponible para adopción
     // Realizar las operaciones necesarias
-    console.log(pet);
+    //console.log(pet);
      /*const [numRowsUpdated] = await Pet.update(
         { adoptedUserId: userId },
         { where: { id: petId } }

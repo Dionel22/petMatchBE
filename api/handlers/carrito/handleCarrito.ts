@@ -20,11 +20,11 @@ export const handleDetailCarrito = async (req: Request, res: Response) => {
 
 export const handleCarrito = async (req: Request, res: Response) => {
     const carrito = req.body;
-    const token = req.headers.authorization;
+   // const token = req.headers.authorization;
     try {
-        const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
-        const userId = decodedToken.id;// se extraer el id del token
-        const response = await postCarrito(userId, carrito)
+       // const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
+       // const userId = decodedToken.id;// se extraer el id del token
+        const response = await postCarrito(carrito)
         res.status(200).json(response)
 
     } catch (error: any) {

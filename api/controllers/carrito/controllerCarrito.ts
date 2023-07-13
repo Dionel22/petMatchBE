@@ -17,14 +17,14 @@ return infoProduct;
 }
 
 //guarda los dato a la base de dato
-export const postCarrito = async (userId: string, carrito: any) => {
+export const postCarrito = async (carrito: any) => {
   // Obtener la fecha actual
   const currentDate = new Date();
   // Suma de productos
   const responseID = await totalPrices(carrito);
   const totalPrice = carrito.totalPrice;
   const purchaseDate = currentDate.toISOString(); // Convertir la fecha a formato ISO string
- // const id = response[1];
+  const userId = carrito.id;
  console.log("res",responseID)
  console.log(totalPrice)
  console.log(purchaseDate)
