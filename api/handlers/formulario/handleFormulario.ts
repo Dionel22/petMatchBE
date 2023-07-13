@@ -28,11 +28,11 @@ export const handleAllFormulario = async (re: Request, res:Response) => {
 
 export const handleAceptarFormulario = async (req: Request, res: Response) => {
    const { id } = req.params;
-   const token = req.headers.authorization;
+   //const token = req.headers.authorization;
    try {
-      const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
-         const userId = decodedToken.userId;// se extraer el id del token
-        console.log(id, userId)
+     // const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
+        // const userId = decodedToken.userId;// se extraer el id del token
+      //  console.log(id, userId)
 
    /* await Adopcions.update(
       { estado: 'aceptado' },
@@ -40,7 +40,7 @@ export const handleAceptarFormulario = async (req: Request, res: Response) => {
     );*/
 
     const adopcion = await Adopcions.findByPk(id)
-   await adoptPet(userId, adopcion)
+   await adoptPet(adopcion)
     if (adopcion) {
       const email = adopcion.email; // Obtener el mail de la adopción encontrada
       console.log('Correo electrónico:', email);
@@ -82,15 +82,15 @@ export const handleRechazarFormulario = async (req: Request, res: Response) => {
 
 export const handleCreateFormulario = async (req: Request, res: Response) => {
    // se extrae el token de la cabecera de autorización.
-   const token = req.headers.authorization;
+   //const token = req.headers.authorization;
    try {
     const { body }= req
-    const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
-    const userId = decodedToken.userId;// se extraer el id del token
-    console.log(userId)
+    //const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
+    //const userId = decodedToken.userId;// se extraer el id del token
+    //console.log(userId)
     console.log("body ",body)
     //console.log(body)
-    const response = await createFormulario(userId, body)
+    const response = await createFormulario( body)
     return res.status(200).json(response)
     } catch (error: any) {
     console.log(error.message)
