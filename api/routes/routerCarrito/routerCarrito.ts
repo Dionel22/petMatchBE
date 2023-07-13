@@ -3,7 +3,7 @@ import { handleCarrito, handleDetailCarrito } from "../../handlers/carrito/handl
 
 const CarritoRouter = Router();
 
-CarritoRouter.get("/:id", handleDetailCarrito);
+CarritoRouter.get("/", handleDetailCarrito);
 CarritoRouter.post("/", handleCarrito);
 
 export default CarritoRouter;
