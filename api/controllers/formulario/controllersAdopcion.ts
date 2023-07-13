@@ -25,9 +25,10 @@ export const createFormulario = async (id: string, body: any) => {
         petAllergy, 
         properHome, 
         dailyPetTime, 
-        over18 
+        over18,
+        petId
     } = body
-   const createFormulario = await Adopcions.create({ name,  lastName,  email,  address, pais, phone,  economicSituation,  previousPetExperience, petAllergy, properHome,  dailyPetTime,  over18,  adopcionId: id })
+   const createFormulario = await Adopcions.create({ name,  lastName,  email,  address, pais, phone,  economicSituation,  previousPetExperience, petAllergy, properHome,  dailyPetTime,  over18,  adopcionId: id , petId })
     return createFormulario  
 }
 

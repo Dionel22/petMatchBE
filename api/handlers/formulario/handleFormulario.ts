@@ -2,6 +2,7 @@ require("dotenv").config();
 import { Request, Response } from "express";
 const { Adopcions } = require("../../models/Adopcion")
 import { allFormulario, createFormulario} from "../../controllers/formulario/controllersAdopcion"
+import { adoptPet } from "../../controllers/adopt/controllerAdopt";
 const { JWT_SECRET } = process.env;//Esta clave es para asegurar la autenticidad del token.
 const jwt = require('jsonwebtoken'); //se utiliza para firmar y verificar tokens JWT; 
 
@@ -27,13 +28,19 @@ export const handleAllFormulario = async (re: Request, res:Response) => {
 
 export const handleAceptarFormulario = async (req: Request, res: Response) => {
    const { id } = req.params;
+   const token = req.headers.authorization;
    try {
-    await Adopcions.update(
+      const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
+         const userId = decodedToken.userId;// se extraer el id del token
+        console.log(id, userId)
+
+   /* await Adopcions.update(
       { estado: 'aceptado' },
       { where: { id: id } }
-    );
+    );*/
 
     const adopcion = await Adopcions.findByPk(id)
+   await adoptPet(userId, adopcion)
     if (adopcion) {
       const email = adopcion.email; // Obtener el mail de la adopción encontrada
       console.log('Correo electrónico:', email);
@@ -79,7 +86,7 @@ export const handleCreateFormulario = async (req: Request, res: Response) => {
    try {
     const { body }= req
     const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
-    const userId = decodedToken.id;// se extraer el id del token
+    const userId = decodedToken.userId;// se extraer el id del token
     console.log(userId)
     console.log("body ",body)
     //console.log(body)

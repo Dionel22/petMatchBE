@@ -25,6 +25,7 @@ import {
     declare over18: boolean;
     declare adopcionId: string;
     declare estado: string;
+    declare petId: string;
   }
   
   export default function adopcionModel(sequelize: Sequelize) {
@@ -91,6 +92,10 @@ import {
           type: DataTypes.STRING,
           allowNull: false,
           defaultValue: 'pendiente', // Valor por defecto para el estado
+        },
+        petId: {
+          type: DataTypes.STRING,
+          allowNull: true,
         },
       },
       {

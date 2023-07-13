@@ -9,7 +9,7 @@ export const handlePerfil = async (req: Request, res: Response) => {
     try {
         const token = req.headers.authorization;
         const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
-        const userId = decodedToken.id;// se extraer el id del token
+        const userId = decodedToken.userId;// se extraer el id del token
        /* const email = (req.session as any).userEmail
         console.log(req.session)
         console.log("-d-d-d->",email)*/

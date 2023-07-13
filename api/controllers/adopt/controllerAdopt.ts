@@ -11,15 +11,30 @@ export const detailAdopcion = async (id: string) => {
     return responsePet
 }
 
-export const adoptPet = async (userId: string, petId: string ) => {
-    const [numRowsUpdated] = await Pet.update(
+export const adoptPet = async (userId: string, adopcion: any ) => {
+    const petId = adopcion.dataValues.petId;
+  console.log("adopcion",adopcion.dataValues)
+  console.log("userId", userId)
+  const pet = await Pet.findOne({
+    where: {
+      id: petId,
+    adoptedUserId: null,
+    }
+  })
+
+  if (!pet) {
+    // La mascota no existe o ya ha sido adoptada
+    // Manejar el caso en consecuencia
+    console.log('No se encontró la mascota especificado o ya hacido adoptada.');
+  } else {
+    // La mascota está disponible para adopción
+    // Realizar las operaciones necesarias
+    console.log(pet);
+     /*const [numRowsUpdated] = await Pet.update(
         { adoptedUserId: userId },
         { where: { id: petId } }
       );
-      
-      if (numRowsUpdated > 0) {
-        console.log('La columna adoptedUserId se actualizó correctamente.');
-      } else {
-        console.log('No se encontró la mascota con el ID especificado.');
-      }
+      */
+     console.log('La columna adoptedUserId se actualizó correctamente.');
+  }
 }

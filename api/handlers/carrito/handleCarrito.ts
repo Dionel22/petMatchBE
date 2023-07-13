@@ -9,7 +9,7 @@ export const handleDetailCarrito = async (req: Request, res: Response) => {
    // console.log("dd",req.session)
     try {
         const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
-        const userId = decodedToken.id;// se extraer el id del token
+        const userId = decodedToken.userId;// se extraer el id del token
         const response = await getDetailCarrito(userId)
         return res.status(200).json(response)
     } catch (error) {
