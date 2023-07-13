@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+require("dotenv").config();
 const { MAILER_PASSWORD } = process.env
 
 export async function sendEmail(email: string) {

@@ -8,4 +8,4 @@ formularioRouter.get("/:id/aceptar", handleAceptarFormulario)
 formularioRouter.get("/:id/rechazar", handleRechazarFormulario)
 formularioRouter.post("/", handleCreateFormulario)
 
-export default formularioRouter;
+export default formularioRouter; 
