@@ -3,7 +3,7 @@ import { handleAdopt, handleDetailAdopcion } from "../../handlers/adopt/handleAd
 
 const adoptRouter = Router()
 
-adoptRouter.get("/", handleDetailAdopcion)
-adoptRouter.get("/:id", handleAdopt)
+adoptRouter.get("/:id", handleDetailAdopcion)
+adoptRouter.get("/", handleAdopt)
 
 export default adoptRouter;

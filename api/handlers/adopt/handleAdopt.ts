@@ -22,12 +22,13 @@ export const handleAdopt = async (req: Request, res: Response) => {
 }
 
 export const handleDetailAdopcion = async (req: Request, res: Response) => {
-    const token = req.headers.authorization;
+    //const token = req.headers.authorization;
     try {
-        const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
-        const userId = decodedToken.id;// se extraer el id del token
-        console.log("---",userId)
-     const response = await detailAdopcion(userId)
+        const { id } = req.params;
+        //const decodedToken = jwt.verify(token, JWT_SECRET); // Se intenta verificar y decodificar el token
+       // const userId = decodedToken.id;// se extraer el id del token
+       // console.log("---",userId)
+     const response = await detailAdopcion(id)
      res.status(200).json(response)
     } catch (error: any) {
      console.log(error.message)
